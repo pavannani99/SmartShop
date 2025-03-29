@@ -1,9 +1,8 @@
 
-import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingCart, Star } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Star, ShoppingCart, Heart } from "lucide-react";
+import { useState } from "react";
 
 interface Product {
   id: number;
@@ -13,90 +12,118 @@ interface Product {
   reviews: number;
   image: string;
   discount?: number;
-  category: string;
+  category?: string;
 }
 
 interface ProductCardProps {
   product: Product;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
-  const [isWishlist, setIsWishlist] = useState(false);
-  const { toast } = useToast();
+export const ProductCard = ({ product }: ProductCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
   
-  const handleAddToCart = () => {
-    toast({
-      title: "Added to cart",
-      description: `${product.name} has been added to your cart`,
-    });
-  };
-  
-  const toggleWishlist = () => {
-    setIsWishlist(!isWishlist);
-    toast({
-      title: isWishlist ? "Removed from wishlist" : "Added to wishlist",
-      description: `${product.name} has been ${isWishlist ? "removed from" : "added to"} your wishlist`,
-    });
+  const discountedPrice = product.discount
+    ? product.price - (product.price * product.discount) / 100
+    : product.price;
+    
+  const renderStars = (rating: number) => {
+    return Array(5)
+      .fill(0)
+      .map((_, i) => (
+        <Star
+          key={i}
+          className={`h-3.5 w-3.5 ${
+            i < Math.floor(rating) 
+              ? "text-[#f90] fill-[#f90]" 
+              : i < rating 
+                ? "text-[#f90] fill-[#f90] half-filled" 
+                : "text-gray-300"
+          }`}
+        />
+      ));
   };
   
   return (
-    <Card className="overflow-hidden group h-full transition-all duration-300 hover:shadow-md">
-      <div className="relative">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-[220px] object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-        {product.discount && (
-          <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 text-xs font-bold rounded">
-            {product.discount}% OFF
-          </div>
-        )}
-        <button
-          onClick={toggleWishlist}
-          className="absolute top-2 right-2 bg-white p-1.5 rounded-full shadow-sm"
-        >
-          <Heart className={`h-4 w-4 ${isWishlist ? "fill-red-500 text-red-500" : "text-gray-400"}`} />
-        </button>
-      </div>
-      
-      <CardContent className="p-4">
-        <div className="mb-2">
-          <p className="text-sm text-gray-500">{product.category}</p>
-          <h3 className="font-medium text-[#171A1F] line-clamp-2 h-12">{product.name}</h3>
+    <Card 
+      className="border hover:border-[#febd69] overflow-hidden transition-shadow hover:shadow-md h-full flex flex-col"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <CardContent className="p-2 md:p-3 flex flex-col h-full">
+        <div className="relative overflow-hidden rounded-md mb-2 md:mb-3 flex-shrink-0">
+          {product.discount && (
+            <div className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-1.5 py-0.5 rounded">
+              -{product.discount}%
+            </div>
+          )}
+          <img
+            src={product.image}
+            alt={product.name}
+            className={`w-full aspect-square object-cover transition-transform duration-300 ${isHovered ? "scale-105" : ""}`}
+          />
+          {isHovered && (
+            <div className="absolute inset-0 bg-black/5 flex items-center justify-center">
+              <Button variant="secondary" size="sm" className="bg-white hover:bg-gray-100 shadow-sm">
+                Quick view
+              </Button>
+            </div>
+          )}
         </div>
         
-        <div className="flex items-center mb-2">
-          <div className="flex items-center">
-            <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
-            <span className="ml-1 text-sm font-medium">{product.rating}</span>
+        <div className="flex flex-col flex-grow">
+          {product.category && (
+            <div className="text-[#007185] text-xs mb-1 hover:underline cursor-pointer">
+              {product.category}
+            </div>
+          )}
+          
+          <h3 className="text-sm md:text-base font-medium line-clamp-2 text-[#131921] mb-1 md:mb-2">
+            {product.name}
+          </h3>
+          
+          <div className="flex items-center mb-1 md:mb-2">
+            <div className="flex mr-1.5">
+              {renderStars(product.rating)}
+            </div>
+            <span className="text-xs text-gray-500">({product.reviews})</span>
           </div>
-          <span className="mx-1 text-gray-300">|</span>
-          <span className="text-sm text-gray-500">{product.reviews} reviews</span>
-        </div>
-        
-        <div className="flex items-center justify-between mt-4">
-          <div>
+          
+          <div className="flex items-baseline gap-1 mb-2">
             {product.discount ? (
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-lg">${(product.price * (1 - product.discount / 100)).toFixed(2)}</span>
-                <span className="text-gray-400 line-through text-sm">${product.price.toFixed(2)}</span>
-              </div>
+              <>
+                <span className="text-sm md:text-base font-bold text-red-600">
+                  ${discountedPrice.toFixed(2)}
+                </span>
+                <span className="text-xs text-gray-500 line-through">
+                  ${product.price.toFixed(2)}
+                </span>
+              </>
             ) : (
-              <span className="font-bold text-lg">${product.price.toFixed(2)}</span>
+              <span className="text-sm md:text-base font-bold">
+                ${product.price.toFixed(2)}
+              </span>
             )}
           </div>
           
-          <Button
-            onClick={handleAddToCart}
-            size="sm"
-            className="bg-[#1E88E5] hover:bg-[#1976D2] rounded-md"
-          >
-            <ShoppingCart className="h-4 w-4 mr-1" />
-            Add
-          </Button>
+          <div className="text-xs text-[#007600] mb-2">In Stock</div>
+          
+          <div className="mt-auto flex gap-1">
+            <Button 
+              className="flex-grow text-xs md:text-sm h-8 md:h-9 bg-[#febd69] hover:bg-[#f3a847] text-black"
+            >
+              <ShoppingCart className="h-3.5 w-3.5 mr-1" />
+              Add to Cart
+            </Button>
+            <Button 
+              variant="outline" 
+              size="icon" 
+              className="h-8 md:h-9 w-8 md:w-9 border-gray-300 text-gray-500 hover:text-red-500"
+            >
+              <Heart className="h-3.5 w-3.5" />
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
   );
-}
+};

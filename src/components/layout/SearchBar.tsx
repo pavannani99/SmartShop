@@ -10,9 +10,12 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger 
 } from "@/components/ui/navigation-menu";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isMobile = useIsMobile();
   
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,49 +23,62 @@ export const SearchBar = () => {
   };
   
   return (
-    <div className="w-full bg-white border-b border-gray-200 py-4 px-[132px] max-xl:px-16 max-md:px-8 max-sm:px-4">
-      <div className="flex items-center justify-between gap-4 max-md:flex-col">
-        <div className="flex items-center gap-4 w-full max-w-xl">
-          <form onSubmit={handleSearch} className="flex flex-1">
+    <div className="w-full bg-[#131921] py-2 px-4 md:py-3 md:px-6 lg:px-8 sticky top-0 z-40">
+      <div className="max-w-[1480px] mx-auto flex items-center justify-between gap-2 md:gap-4">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          className="text-white md:hidden" 
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          <Menu className="h-6 w-6" />
+        </Button>
+        
+        <div className="flex items-center gap-4 flex-1 max-w-4xl">
+          <form onSubmit={handleSearch} className="flex flex-1 min-w-0">
             <div className="relative flex-1">
               <input
                 type="text"
                 placeholder="Search products, brands and categories"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full h-10 pl-10 pr-4 text-sm border border-gray-300 rounded-l-md focus:outline-none focus:ring-1 focus:ring-[#1E88E5] focus:border-[#1E88E5]"
+                className="w-full h-10 pl-3 pr-4 text-sm border-0 rounded-l-md focus:outline-none focus:ring-1 focus:ring-[#febd69]"
+                aria-label="Search"
               />
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
             </div>
-            <Button type="submit" className="rounded-l-none bg-[#1E88E5] hover:bg-[#1976D2]">
-              Search
+            <Button type="submit" className="rounded-l-none h-10 bg-[#febd69] hover:bg-[#f3a847] text-black">
+              <Search className="h-5 w-5" />
+              {!isMobile && <span className="ml-1">Search</span>}
             </Button>
           </form>
         </div>
         
-        <div className="flex items-center gap-4">
-          <Button variant="ghost" className="p-2" aria-label="Wishlist">
-            <Heart className="h-5 w-5 text-[#171A1F]" />
+        <div className="flex items-center gap-1 md:gap-3">
+          <Button variant="ghost" className="hidden md:flex flex-col items-center text-white p-1 h-auto">
+            <span className="text-xs">Hello, Sign in</span>
+            <span className="text-sm font-bold">Account & Lists</span>
           </Button>
           
-          <Button variant="ghost" className="p-2 relative" aria-label="Cart">
-            <ShoppingCart className="h-5 w-5 text-[#171A1F]" />
-            <span className="absolute -top-1 -right-1 bg-[#1E88E5] text-white text-xs h-5 w-5 flex items-center justify-center rounded-full">
+          <Button variant="ghost" className="hidden md:flex flex-col items-center text-white p-1 h-auto">
+            <span className="text-xs">Returns</span>
+            <span className="text-sm font-bold">& Orders</span>
+          </Button>
+          
+          <Button variant="ghost" className="relative p-2 text-white" aria-label="Cart">
+            <div className="absolute -top-1 -right-1 bg-[#f3a847] text-black text-xs h-5 w-5 flex items-center justify-center rounded-full font-bold">
               3
-            </span>
-          </Button>
-          
-          <Button variant="ghost" className="p-2" aria-label="Account">
-            <User className="h-5 w-5 text-[#171A1F]" />
+            </div>
+            <ShoppingCart className="h-6 w-6" />
+            {!isMobile && <span className="ml-1 font-bold">Cart</span>}
           </Button>
         </div>
       </div>
       
-      <div className="mt-4 flex justify-between items-center">
-        <NavigationMenu className="max-md:hidden">
+      <div className="hidden md:flex max-w-[1480px] mx-auto mt-2 items-center">
+        <NavigationMenu className="text-white">
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="bg-transparent">All Categories</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="bg-transparent hover:bg-transparent text-white">All Categories</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-4 w-[400px] grid-cols-2">
                   <li className="row-span-3">
@@ -102,31 +118,71 @@ export const SearchBar = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="#" className="text-sm text-gray-600 hover:text-[#1E88E5] px-3 py-2">
+              <NavigationMenuLink href="#" className="text-sm text-white hover:text-[#f3a847] px-3 py-2">
+                Today's Deals
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink href="#" className="text-sm text-white hover:text-[#f3a847] px-3 py-2">
                 New Arrivals
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="#" className="text-sm text-gray-600 hover:text-[#1E88E5] px-3 py-2">
-                Top Sellers
+              <NavigationMenuLink href="#" className="text-sm text-white hover:text-[#f3a847] px-3 py-2">
+                Customer Service
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink href="#" className="text-sm text-gray-600 hover:text-[#1E88E5] px-3 py-2">
-                Today's Deals
+              <NavigationMenuLink href="#" className="text-sm text-white hover:text-[#f3a847] px-3 py-2">
+                Gift Cards
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
         
-        <Button variant="ghost" className="md:hidden p-2" aria-label="Menu">
-          <Menu className="h-5 w-5 text-[#171A1F]" />
-        </Button>
-        
-        <div className="text-sm text-gray-600 max-md:hidden">
-          <span className="text-[#1E88E5]">Free shipping</span> on orders over $50
+        <div className="ml-auto text-sm text-white">
+          <span className="text-[#f3a847] mr-1">Free delivery</span> on orders over $50
         </div>
       </div>
+      
+      {isMenuOpen && isMobile && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 z-50">
+          <div className="absolute top-0 left-0 h-full w-4/5 max-w-xs bg-white">
+            <div className="bg-[#131921] text-white p-4 flex items-center">
+              <User className="h-6 w-6 mr-2" />
+              <span className="font-bold">Hello, Sign in</span>
+              <Button 
+                variant="ghost" 
+                size="icon" 
+                className="ml-auto text-white" 
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <span className="text-xl">&times;</span>
+              </Button>
+            </div>
+            <div className="overflow-y-auto h-[calc(100%-60px)]">
+              <div className="p-3 border-b">
+                <h3 className="font-bold text-lg mb-2">Shop By Department</h3>
+                <ul className="space-y-2">
+                  <li><a href="#" className="block py-1">Men</a></li>
+                  <li><a href="#" className="block py-1">Women</a></li>
+                  <li><a href="#" className="block py-1">Kids</a></li>
+                  <li><a href="#" className="block py-1">Sports</a></li>
+                  <li><a href="#" className="block py-1">Accessories</a></li>
+                </ul>
+              </div>
+              <div className="p-3 border-b">
+                <h3 className="font-bold text-lg mb-2">Help & Settings</h3>
+                <ul className="space-y-2">
+                  <li><a href="#" className="block py-1">Your Account</a></li>
+                  <li><a href="#" className="block py-1">Customer Service</a></li>
+                  <li><a href="#" className="block py-1">Sign Out</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

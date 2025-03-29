@@ -31,47 +31,59 @@ export const Deals = () => {
   }, []);
   
   return (
-    <section className="py-16 px-[132px] max-xl:px-16 max-md:px-8 max-sm:px-4 bg-white">
-      <div className="bg-gradient-to-r from-[#1E88E5] to-[#1976D2] rounded-xl overflow-hidden">
-        <div className="flex flex-col md:flex-row">
-          <div className="p-10 md:w-3/5 flex flex-col justify-center">
-            <h2 className="text-white text-4xl font-bold mb-4">Flash Sale</h2>
-            <p className="text-white/80 text-lg mb-6">
-              Get up to 50% off on the season's hottest styles. Limited time offer!
-            </p>
-            
-            <div className="flex space-x-4 mb-8 max-sm:flex-wrap max-sm:space-x-2 max-sm:space-y-2">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center min-w-[80px]">
-                <div className="text-white text-2xl font-bold">{timeLeft.days}</div>
-                <div className="text-white/80 text-sm">Days</div>
+    <section className="py-6 md:py-10 bg-white rounded-md shadow-sm my-4">
+      <div className="flex justify-between items-center px-4 mb-4 md:mb-6">
+        <h2 className="text-xl md:text-2xl font-bold text-[#131921]">Today's Deals</h2>
+        <Button variant="link" className="text-[#007185] hover:text-[#c7511f] hover:underline">
+          See all deals
+        </Button>
+      </div>
+      
+      <div className="px-4">
+        <div className="bg-gradient-to-r from-[#232f3e] to-[#131921] rounded-lg overflow-hidden">
+          <div className="flex flex-col md:flex-row">
+            <div className="p-4 sm:p-6 md:p-8 md:w-3/5 flex flex-col justify-center">
+              <div className="bg-[#cc0c39] text-white font-bold text-sm inline-block px-2 py-1 rounded mb-3 w-max">
+                Deal of the day
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center min-w-[80px]">
-                <div className="text-white text-2xl font-bold">{timeLeft.hours}</div>
-                <div className="text-white/80 text-sm">Hours</div>
+              <h2 className="text-white text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-4">Flash Sale</h2>
+              <p className="text-white/80 text-sm sm:text-base md:text-lg mb-4 sm:mb-6">
+                Get up to 50% off on the season's hottest styles. Limited time offer!
+              </p>
+              
+              <div className="flex space-x-3 mb-4 sm:mb-6">
+                <div className="bg-white/10 backdrop-blur-sm rounded px-3 py-2 text-center min-w-[50px]">
+                  <div className="text-white text-lg font-bold">{timeLeft.days}</div>
+                  <div className="text-white/80 text-xs">Days</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded px-3 py-2 text-center min-w-[50px]">
+                  <div className="text-white text-lg font-bold">{timeLeft.hours}</div>
+                  <div className="text-white/80 text-xs">Hours</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded px-3 py-2 text-center min-w-[50px]">
+                  <div className="text-white text-lg font-bold">{timeLeft.minutes}</div>
+                  <div className="text-white/80 text-xs">Mins</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-sm rounded px-3 py-2 text-center min-w-[50px]">
+                  <div className="text-white text-lg font-bold">{timeLeft.seconds}</div>
+                  <div className="text-white/80 text-xs">Secs</div>
+                </div>
               </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center min-w-[80px]">
-                <div className="text-white text-2xl font-bold">{timeLeft.minutes}</div>
-                <div className="text-white/80 text-sm">Minutes</div>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-center min-w-[80px]">
-                <div className="text-white text-2xl font-bold">{timeLeft.seconds}</div>
-                <div className="text-white/80 text-sm">Seconds</div>
-              </div>
+              
+              <Button className="bg-[#febd69] hover:bg-[#f3a847] text-black font-medium w-max">
+                Shop Now
+              </Button>
             </div>
             
-            <Button className="bg-white text-[#1E88E5] hover:bg-white/90 hover:text-[#1976D2] max-w-[200px]">
-              Shop Now
-            </Button>
-          </div>
-          
-          <div className="md:w-2/5 relative">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/d1d1d1?width=500&height=400"
-              alt="Flash sale products"
-              className="h-full w-full object-cover object-center"
-            />
-            <div className="absolute top-6 right-6 bg-red-500 text-white px-4 py-2 rounded-full font-bold">
-              -50%
+            <div className="md:w-2/5 relative">
+              <img
+                src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
+                alt="Flash sale products"
+                className="h-full w-full object-cover object-center min-h-[200px]"
+              />
+              <div className="absolute top-4 right-4 bg-[#cc0c39] text-white text-sm font-bold px-3 py-1 rounded">
+                -50%
+              </div>
             </div>
           </div>
         </div>
