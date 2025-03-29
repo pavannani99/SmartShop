@@ -3,12 +3,12 @@ import { useState } from "react";
 import { 
   CreditCard, 
   CheckCircle2, 
-  PaypalIcon, 
   CreditCardIcon, 
-  AppleIcon,
-  GooglePayIcon,
   ShieldCheck,
-  Lock 
+  Lock,
+  AppleIcon,
+  CircleDollarSign,
+  Mail
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -129,7 +129,7 @@ export const PaymentGateway = () => {
           
           <PaymentMethod
             name="PayPal"
-            icon={PaypalIcon}
+            icon={CircleDollarSign}
             selected={paymentMethod === "paypal"}
             onSelect={() => setPaymentMethod("paypal")}
           />
@@ -143,7 +143,7 @@ export const PaymentGateway = () => {
           
           <PaymentMethod
             name="Google Pay"
-            icon={GooglePayIcon}
+            icon={Mail}
             selected={paymentMethod === "google-pay"}
             onSelect={() => setPaymentMethod("google-pay")}
           />
