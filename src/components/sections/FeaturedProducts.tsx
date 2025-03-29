@@ -16,7 +16,7 @@ export const FeaturedProducts = () => {
       price: 150,
       rating: 4.5,
       reviews: 120,
-      image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       discount: 10,
       category: "Running"
     },
@@ -26,7 +26,7 @@ export const FeaturedProducts = () => {
       price: 180,
       rating: 4.7,
       reviews: 183,
-      image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
+      image: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Running"
     },
     {
@@ -35,7 +35,7 @@ export const FeaturedProducts = () => {
       price: 120,
       rating: 4.3,
       reviews: 98,
-      image: "https://images.unsplash.com/photo-1608379743498-63cc3f9f673c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      image: "https://images.unsplash.com/photo-1608379743498-63cc3f9f673c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       discount: 15,
       category: "Casual"
     },
@@ -45,7 +45,7 @@ export const FeaturedProducts = () => {
       price: 175,
       rating: 4.6,
       reviews: 145,
-      image: "https://images.unsplash.com/photo-1539185441755-769473a23570?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80",
+      image: "https://images.unsplash.com/photo-1539185441755-769473a23570?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Running"
     },
     {
@@ -54,7 +54,7 @@ export const FeaturedProducts = () => {
       price: 60,
       rating: 4.4,
       reviews: 210,
-      image: "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2021&q=80",
+      image: "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Casual"
     },
     {
@@ -63,7 +63,7 @@ export const FeaturedProducts = () => {
       price: 65,
       rating: 4.2,
       reviews: 176,
-      image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2098&q=80",
+      image: "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       category: "Skate"
     }
   ];

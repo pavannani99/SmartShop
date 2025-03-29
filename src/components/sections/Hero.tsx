@@ -8,19 +8,19 @@ export const Hero = () => {
   
   const slides = [
     {
-      image: "https://cdn.builder.io/api/v1/image/assets/TEMP/a39d768ebab5a17d80b967bfd715d30bc81c0a52",
+      image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
       title: "Step Into Style",
       description: "Discover the latest collection of trendy footwear designed for comfort and elegance. Free shipping on orders over $50.",
       buttonText: "Shop Now"
     },
     {
-      image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2574&q=80",
+      image: "https://images.unsplash.com/photo-1556906781-9a412961c28c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
       title: "Summer Collection",
       description: "Beat the heat with our exclusive summer collection. Lightweight, breathable, and stylish.",
       buttonText: "Explore Collection"
     },
     {
-      image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2225&q=80",
+      image: "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80",
       title: "Exclusive Deals",
       description: "Limited time offers on premium brands. Up to 50% off on selected items.",
       buttonText: "View Deals"
